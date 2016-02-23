@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Self Click Show&Hide</title>
+    <script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+</body>
+<h1 id="title3" onclick="alert('hello');">First Hello </h1>
+<script type="text/javascript">
+   var svg = d3.select("body")
+               .append("svg");
+
+   svg.append("text")
+      .attr("id", "title")
+      .attr("fill", "blue")
+      .attr("font-size", "20px")
+      .on("click",showHide())
+      .text("First Hello");
+
+   svg.append("text")
+      .attr("id", "title2")
+      .text("2nd Hello")
+      .attr("fill", "red")
+      .style("opacity", 0)
+      .on("click",showHide());
+
+    function showHide(){
+    var active   = title.active ? false : true ,
+		  newOpacity = active ? 0 : 1;
+        d3.select("#title").style("opacity", newOpacity);
+        d3.select("#title2").style("opacity", !newOpacity);
+        title.active = active;
+    };
+</script>
+</html>
